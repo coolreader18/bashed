@@ -2,7 +2,7 @@
 import lookahead from "iterable-lookahead";
 import compose from "compose-function";
 import map from "map-iterable";
-// import { isOperator } from "../enums/io-file-operators";
+import { isOperator } from "../enums/io-file-operators";
 import isValidName from "../../../utils/is-valid-name";
 
 function couldEndSimpleCommand(scTk) {
@@ -40,10 +40,7 @@ const identifySimpleCommandName = (options, mode) =>
 			if (tk._.commandNameNotFoundYet) {
 				const last = iterable.behind(1);
 
-				if (
-					!mode.enums.IOFileOperators.isOperator(last) &&
-					couldBeCommandName(tk)
-				) {
+				if (!isOperator(last) && couldBeCommandName(tk)) {
 					tk._.maybeSimpleCommandName = true;
 				} else {
 					const next = iterable.ahead(1);
