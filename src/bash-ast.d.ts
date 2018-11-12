@@ -1,4 +1,4 @@
-export type Token =
+export type Node =
 	| Script
 	| Pipeline
 	| LogicalExpression

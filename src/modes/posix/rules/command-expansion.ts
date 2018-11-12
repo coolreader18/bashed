@@ -4,7 +4,7 @@ import map from "map-iterable";
 import MagicString from "magic-string";
 import * as tokensUtils from "../../../utils/tokens";
 import * as fieldSplitting from "./field-splitting";
-import bashParser from "../../../";
+import { parse } from "../../../";
 
 function setCommandExpansion(xp, token) {
 	let command = xp.command;
@@ -13,7 +13,7 @@ function setCommandExpansion(xp, token) {
 		command = command.replace(/\\`/g, "`");
 	}
 
-	const commandAST = bashParser(command);
+	const commandAST = parse(command);
 
 	// console.log(JSON.stringify({command, commandAST}, null, 4))
 	return Object.assign({}, xp, { command, commandAST });
