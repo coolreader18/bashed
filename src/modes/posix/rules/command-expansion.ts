@@ -4,6 +4,7 @@ import map from "map-iterable";
 import MagicString from "magic-string";
 import * as tokensUtils from "../../../utils/tokens";
 import * as fieldSplitting from "./field-splitting";
+import bashParser from "../../../";
 
 function setCommandExpansion(xp, token) {
 	let command = xp.command;
@@ -11,8 +12,6 @@ function setCommandExpansion(xp, token) {
 	if (token.value[xp.loc.start - 1] === "`") {
 		command = command.replace(/\\`/g, "`");
 	}
-
-	const bashParser = require("../../../index");
 
 	const commandAST = bashParser(command);
 

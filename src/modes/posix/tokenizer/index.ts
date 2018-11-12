@@ -200,7 +200,7 @@ export default (
 	options,
 	reducers: typeof import("./reducers") = require("./reducers")
 ) =>
-	function* tokenizer(src) {
+	function* tokenizer(src: Buffer) {
 		const State =
 			process.env.NODE_ENV === "development"
 				? mkImmutableState(reducers)
@@ -209,7 +209,8 @@ export default (
 		let state = new State();
 
 		let reduction = reducers.start;
-		const source = Array.from(src);
+		const source = Array.from(src.toString());
+		console.log(source);
 
 		while (typeof reduction === "function") {
 			const char = source[0];

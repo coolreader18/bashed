@@ -2,6 +2,7 @@
 import compose from "compose-function";
 import map from "map-iterable";
 import lookahead from "iterable-lookahead";
+import { isOperator } from "../enums/io-file-operators";
 
 const ioNumber = (options, mode) => {
 	return compose(
@@ -12,7 +13,7 @@ const ioNumber = (options, mode) => {
 				tk &&
 				tk.is("WORD") &&
 				tk.value.match(/^[0-9]+$/) &&
-				mode.enums.IOFileOperators.isOperator(next)
+				isOperator(next)
 			) {
 				return tk.changeTokenType("IO_NUMBER", tk.value);
 			}
