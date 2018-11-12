@@ -115,7 +115,12 @@ interface ParseOptions {
 	mode?: "posix" | "bash" | "wordExpansion";
 }
 
-const parse = (
+interface Parse {
+	(sourceCode: string, options?: ParseOptions): AST.Script;
+	default: Parse;
+}
+
+const parse: Parse = (
 	sourceCode,
 	{ mode: modeName = "posix", ...options }: ParseOptions = {}
 ) => {
@@ -149,4 +154,6 @@ const parse = (
 	}
 };
 
-export default parse;
+parse.default = parse;
+
+export = parse;
