@@ -72,10 +72,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-yarn.lock
 out
 
 **/built-grammar.*
 **/.nyc_output
 
 package-lock.json
+
+build/

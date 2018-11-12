@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"moduleResolution": "node",
+		"target": "es6",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"rootDir": "src"
+		// "outDir": "build"
+	}
+}

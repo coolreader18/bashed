@@ -24,6 +24,7 @@
     "json5": "^0.5.0",
     "mode-grammar-builder": "^0.6.0",
     "nyc": "^7.0.0",
+    "typescript": "^3.1.6",
     "xo": "^0.16.0"
   },
   "files": [
@@ -36,6 +37,7 @@
     ]
   },
   "dependencies": {
+    "@types/node": "^10.12.3",
     "array-last": "^1.1.1",
     "babylon": "^6.9.1",
     "compose-function": "^3.0.3",
