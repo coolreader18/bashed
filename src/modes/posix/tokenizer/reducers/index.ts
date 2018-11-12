@@ -14,7 +14,7 @@ import expansionParameter from "./expansion-parameter";
 import expansionCommandOrArithmetic from "./expansion-command-or-arithmetic";
 import expansionParameterExtended from "./expansion-parameter-extended";
 
-export default {
+export {
 	end,
 	operator,
 	comment,

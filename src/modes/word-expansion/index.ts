@@ -73,28 +73,26 @@ function start(state, source, reducers) {
 	};
 }
 
-export default {
-	inherits: "posix",
-	init: posixMode => {
-		const phaseCatalog = posixMode.phaseCatalog;
-		const lexerPhases = [
-			convertToWord,
-			phaseCatalog.parameterExpansion,
-			phaseCatalog.arithmeticExpansion,
-			phaseCatalog.commandExpansion,
-			phaseCatalog.tildeExpanding,
-			phaseCatalog.parameterExpansion.resolve,
-			phaseCatalog.commandExpansion.resolve,
-			phaseCatalog.arithmeticExpansion.resolve,
-			phaseCatalog.fieldSplitting.split,
-			phaseCatalog.pathExpansion,
-			phaseCatalog.quoteRemoval,
-			phaseCatalog.defaultNodeType
-		];
-		const reducers = Object.assign({}, posixMode.tokenizer.reducers, { start });
+export const inherits = "posix";
+export const init = posixMode => {
+	const phaseCatalog = posixMode.phaseCatalog;
+	const lexerPhases = [
+		convertToWord,
+		phaseCatalog.parameterExpansion,
+		phaseCatalog.arithmeticExpansion,
+		phaseCatalog.commandExpansion,
+		phaseCatalog.tildeExpanding,
+		phaseCatalog.parameterExpansion.resolve,
+		phaseCatalog.commandExpansion.resolve,
+		phaseCatalog.arithmeticExpansion.resolve,
+		phaseCatalog.fieldSplitting.split,
+		phaseCatalog.pathExpansion,
+		phaseCatalog.quoteRemoval,
+		phaseCatalog.defaultNodeType
+	];
+	const reducers = Object.assign({}, posixMode.tokenizer.reducers, { start });
 
-		const tokenizer = () => posixMode.tokenizer({}, reducers);
+	const tokenizer = () => posixMode.tokenizer({}, reducers);
 
-		return Object.assign({}, posixMode, { lexerPhases, tokenizer });
-	}
+	return Object.assign({}, posixMode, { lexerPhases, tokenizer });
 };

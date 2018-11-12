@@ -196,12 +196,13 @@ const mkMutableState = reducers =>
 		}
 	};
 
-export default (options, reducers) =>
+export default (
+	options,
+	reducers: typeof import("./reducers") = require("./reducers")
+) =>
 	function* tokenizer(src) {
-		reducers = reducers || require("./reducers");
-
 		const State =
-			process.env.NODE_NEV === "development"
+			process.env.NODE_ENV === "development"
 				? mkImmutableState(reducers)
 				: mkMutableState(reducers);
 

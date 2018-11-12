@@ -4,9 +4,7 @@ import last from "array-last";
 import * as AST from "../../bash-ast";
 
 export default options => {
-	function isAsyncSeparator(separator) {
-		return separator.text.indexOf("&") !== -1;
-	}
+	const isAsyncSeparator = separator => separator.text.indexOf("&") !== -1;
 
 	const builder = {
 		caseItem: (pattern, body, locStart, locEnd) => {
@@ -297,10 +295,9 @@ export default options => {
 		}
 	};
 
-	mkListHelper(builder, "caseList");
-	mkListHelper(builder, "pattern");
-	mkListHelper(builder, "prefix");
-	mkListHelper(builder, "suffix");
+	for (const list of ["caseList", "pattern", "prefix", "suffix"]) {
+		mkListHelper(builder, list);
+	}
 
 	return builder;
 };

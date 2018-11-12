@@ -127,24 +127,18 @@ const parameterOperators = {
 	}
 };
 
-export default {
-	inherits: "posix",
-	init: (posixMode, utils) => {
-		const phaseCatalog = Object.assign({}, posixMode.phaseCatalog, {
-			bashAliasSubstitution
-		});
-		const lexerPhases = utils.replaceRule(
-			phaseCatalog.aliasSubstitution,
-			bashAliasSubstitution,
-			posixMode.lexerPhases
-		);
-		const bashOperators = Object.assign(
-			parameterOperators,
-			posixMode.enums.parameterOperators
-		);
-		const enums = Object.assign({}, posixMode.enums, {
-			parameterOperators: bashOperators
-		});
-		return Object.assign({}, posixMode, { phaseCatalog, lexerPhases, enums });
-	}
+export const inherits = "posix";
+export const init = (posixMode, utils) => {
+	const phaseCatalog = { ...posixMode.phaseCatalog, bashAliasSubstitution };
+	const lexerPhases = utils.replaceRule(
+		phaseCatalog.aliasSubstitution,
+		bashAliasSubstitution,
+		posixMode.lexerPhases
+	);
+	const bashOperators = Object.assign(
+		parameterOperators,
+		posixMode.enums.parameterOperators
+	);
+	const enums = { ...posixMode.enums, parameterOperators: bashOperators };
+	return { ...posixMode, phaseCatalog, lexerPhases, enums };
 };

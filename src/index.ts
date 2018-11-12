@@ -9,9 +9,9 @@ interface Mode {
 	init: (posixMode: any, utils: typeof import("./utils")) => any;
 }
 // preload all modes to have them browserified
-import bash from "./modes/bash";
-import posix from "./modes/posix";
-import wordExpansion from "./modes/word-expansion";
+import * as bash from "./modes/bash";
+import * as posix from "./modes/posix";
+import * as wordExpansion from "./modes/word-expansion";
 const modes: {
 	[k: string]: Mode;
 } = {
@@ -121,7 +121,6 @@ const parse = (
 ) => {
 	try {
 		const mode = loadPlugin(modeName);
-		console.log(mode);
 		const { Parser } = mode.grammar;
 		const { astBuilder } = mode;
 		const parser = new Parser();
